@@ -1,4 +1,3 @@
----
 version: 2
 jobs:
   build: &build
@@ -31,6 +30,7 @@ jobs:
             - ~/.npm
             - /usr/local/lib/node_modules
   release:
+    <<: *build
     steps:
       - run:
           name: release
