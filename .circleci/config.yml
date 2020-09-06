@@ -3,7 +3,6 @@ jobs:
   build: &build
     docker:
       - image: node:12
-    working_directory: ~/
     steps:
       - checkout
       - restore_cache: &restore_cache
@@ -40,13 +39,8 @@ workflows:
   version: 2
   "@lime.it/blip-core":
     jobs:
+      - cache
       - build
-      - cache:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
       - release:
           requires:
             - build
