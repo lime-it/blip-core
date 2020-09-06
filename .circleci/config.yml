@@ -1,0 +1,58 @@
+---
+version: 2
+jobs:
+  build: &build
+    docker:
+      - image: node:12
+    working_directory: ~/
+    steps:
+      - checkout
+      - restore_cache: &restore_cache
+          keys:
+            - v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "package-lock.json"}}
+            - v1-npm-{{checksum ".circleci/config.yml"}}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Building
+          command: npm run build
+  cache:
+    <<: *build
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "package-lock.json"}}
+          paths:
+            - ~/node_modules
+            - ~/.npm
+            - /usr/local/lib/node_modules
+  release:
+    steps:
+      - run:
+          name: release
+          command: npm run semantic-release
+
+workflows:
+  version: 2
+  "@lime.it/blip-core":
+    jobs:
+      - build
+      - cache:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - release
+        requires:
+          - build
+        filters:
+          branches:
+            only:
+              - master
+              - next
+
