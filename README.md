@@ -5,7 +5,6 @@
 [![Downloads/week](https://img.shields.io/npm/dw/@lime.it/blip-core.svg)](https://npmjs.org/package/@lime.it/blip-core)
 [![License](https://img.shields.io/npm/l/@lime.it/blip-core.svg)](https://github.com/lime-it/blip-core/blob/master/package.json)
 
-# blip-core
 Core abstractions and fuctionalities of blip cli tool
 
 The package contains basi utility classes and types used by the **blip** command and its plugins and extensions.
