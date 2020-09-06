@@ -31,9 +31,6 @@ jobs:
             - ~/node_modules
             - ~/.npm
             - /usr/local/lib/node_modules
-  release:
-    <<: *build
-    steps:
 
 workflows:
   version: 2
