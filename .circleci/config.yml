@@ -40,7 +40,9 @@ workflows:
   "@lime.it/blip-core":
     jobs:
       - cache
-      - build
+      - build:
+          requires:
+            - cache
       - release:
           requires:
             - build
