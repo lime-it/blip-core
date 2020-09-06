@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "rimraf dist && ./node_modules/.bin/tsc -b && cp LICENSE dist/LICENSE && cp package.json dist/package.json",
-    "semantic-release": "semantic-release"
+    "semantic-release": "cd dist && semantic-release"
   },
   "repository": {
     "type": "git",
