@@ -13,8 +13,11 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
-          name: Building
+          name: Building and publishing to npm
           command: npm run build
+      - run:
+          name: release
+          command: npm run semantic-release
   cache:
     <<: *build
     steps:
@@ -31,21 +34,20 @@ jobs:
   release:
     <<: *build
     steps:
-      - run:
-          name: release
-          command: npm run semantic-release
 
 workflows:
   version: 2
   "@lime.it/blip-core":
     jobs:
-      - cache
+      - cache:
+          filters:
+            branches:
+              only:
+                - master
+                - next
       - build:
           requires:
             - cache
-      - release:
-          requires:
-            - build
           filters:
             branches:
               only:
