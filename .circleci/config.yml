@@ -36,18 +36,15 @@ workflows:
   version: 2
   "@lime.it/blip-core":
     jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - next
       - cache:
           filters:
             branches:
               only:
                 - master
-                - next
-      - build:
-          requires:
-            - cache
-          filters:
-            branches:
-              only:
-                - master
-                - next
 
