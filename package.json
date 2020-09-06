@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "rimraf dist && ./node_modules/.bin/tsc -b && cp LICENSE dist/LICENSE && cp package.json dist/package.json",
+    "build": "rimraf dist && ./node_modules/.bin/tsc -b && cp LICENSE dist/LICENSE && cp package.json dist/package.json && cp README.md dist/README.md",
     "semantic-release": "cd dist && semantic-release"
   },
   "repository": {
