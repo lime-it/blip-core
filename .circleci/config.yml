@@ -47,12 +47,12 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - release
-        requires:
-          - build
-        filters:
-          branches:
-            only:
-              - master
-              - next
+      - release:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - next
 
